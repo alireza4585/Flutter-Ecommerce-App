@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loginapi/auth/auth.dart';
-import 'package:loginapi/data/bloc/auth_bloc.dart';
-import 'package:loginapi/data/bloc/auth_event.dart';
-import 'package:loginapi/data/bloc/auth_state.dart';
-import 'package:loginapi/screen/home_screen.dart';
+import 'package:flutter_shopping_app_with_api/data/bloc/auth_bloc.dart';
+import 'package:flutter_shopping_app_with_api/data/bloc/auth_event.dart';
+import 'package:flutter_shopping_app_with_api/data/bloc/auth_state.dart';
+import 'package:flutter_shopping_app_with_api/screen/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   final VoidCallback show;

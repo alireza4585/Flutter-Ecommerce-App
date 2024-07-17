@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:loginapi/util/auth_manager.dart';
-import 'package:loginapi/util/dio.dart';
-import 'package:loginapi/util/exception.dart';
+import 'package:flutter_shopping_app_with_api/util/auth_manager.dart';
+import 'package:flutter_shopping_app_with_api/util/dio.dart';
+import 'package:flutter_shopping_app_with_api/util/exception.dart';
 
 abstract class IAuthenticationDatasource {
   Future<void> register(

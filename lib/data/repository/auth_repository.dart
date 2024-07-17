@@ -1,7 +1,7 @@
 import 'package:either_dart/either.dart';
-import 'package:loginapi/data/datasource/datasource_auth.dart';
-import 'package:loginapi/gitit/gitit.dart';
-import 'package:loginapi/util/exception.dart';
+import 'package:flutter_shopping_app_with_api/data/datasource/datasource_auth.dart';
+import 'package:flutter_shopping_app_with_api/gitit/gitit.dart';
+import 'package:flutter_shopping_app_with_api/util/exception.dart';
 
 abstract class IAuthRepository {
   Future<Either<String, String>> register(

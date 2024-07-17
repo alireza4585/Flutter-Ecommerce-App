@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:loginapi/gitit/gitit.dart';
+import 'package:flutter_shopping_app_with_api/gitit/gitit.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthManager {

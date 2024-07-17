@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loginapi/data/bloc/auth_bloc.dart';
-import 'package:loginapi/screen/login_screen.dart';
-import 'package:loginapi/screen/signup_screen.dart';
+import 'package:flutter_shopping_app_with_api/data/bloc/auth_bloc.dart';
+import 'package:flutter_shopping_app_with_api/screen/login_screen.dart';
+import 'package:flutter_shopping_app_with_api/screen/signup_screen.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});

@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loginapi/data/bloc/auth_event.dart';
-import 'package:loginapi/data/bloc/auth_state.dart';
-import 'package:loginapi/data/repository/auth_repository.dart';
-import 'package:loginapi/gitit/gitit.dart';
+import 'package:flutter_shopping_app_with_api/data/bloc/auth_event.dart';
+import 'package:flutter_shopping_app_with_api/data/bloc/auth_state.dart';
+import 'package:flutter_shopping_app_with_api/data/repository/auth_repository.dart';
+import 'package:flutter_shopping_app_with_api/gitit/gitit.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final IAuthRepository _authRepository = locator.get();
