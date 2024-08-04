@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_shopping_app_with_api/auth/auth.dart';
 import 'package:flutter_shopping_app_with_api/constants/color.dart';
-import 'package:flutter_shopping_app_with_api/util/auth_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -25,108 +23,115 @@ class _HomeScreenState extends State<HomeScreen> {
             Appbar(),
             Search_widget(),
             Banner(),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
-                child: Text(
-                  'Bestselling',
-                  style: TextStyle(
-                    fontSize: 17.sp,
-                    color: Colors.grey.shade700,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: 15.w),
-              sliver: SliverGrid(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.r),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.shade400,
-                            offset: Offset(3, 1),
-                            blurRadius: 10.r,
-                          ),
-                        ],
-                      ),
-                      child: Stack(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 110.h),
-                            child: SizedBox(
-                              height: 150.h,
-                              width: 200.w,
-                              child: Image.asset('images/image.png'),
-                            ),
-                          ),
-                          Positioned(
-                            top: 160.h,
-                            left: 20.w,
-                            child: Text(
-                              'Name',
-                              style: TextStyle(
-                                fontSize: 16.sp,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 200.h,
-                            left: 0,
-                            right: 0,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 15.w),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Price',
-                                    style: TextStyle(
-                                      fontSize: 16.sp,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Container(
-                                    width: 40.w,
-                                    height: 40.h,
-                                    decoration: BoxDecoration(
-                                      color: Colors.black,
-                                      borderRadius: BorderRadius.circular(11.r),
-                                    ),
-                                    child: Icon(
-                                      Icons.shopping_cart_outlined,
-                                      size: 25.w,
-                                      color: Colors.white,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                  childCount: 4,
-                ),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisExtent: 270,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                ),
-              ),
-            )
+            bestselling(),
+            bestselling_widget(),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget bestselling_widget() {
+    return SliverPadding(
+      padding: EdgeInsets.only(right: 15.w, left: 15.w, bottom: 20.h),
+      sliver: SliverGrid(
+        delegate: SliverChildBuilderDelegate(
+          (context, index) {
+            return Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.r),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade400,
+                    offset: Offset(3, 1),
+                    blurRadius: 10.r,
+                  ),
+                ],
+              ),
+              child: Stack(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 110.h),
+                    child: SizedBox(
+                      height: 150.h,
+                      width: 200.w,
+                      child: Image.asset('images/image.png'),
+                    ),
+                  ),
+                  Positioned(
+                    top: 160.h,
+                    left: 20.w,
+                    child: Text(
+                      'Name',
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 200.h,
+                    left: 0,
+                    right: 0,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.w),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Price',
+                            style: TextStyle(
+                              fontSize: 16.sp,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Container(
+                            width: 40.w,
+                            height: 40.h,
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.circular(11.r),
+                            ),
+                            child: Icon(
+                              Icons.shopping_cart_outlined,
+                              size: 25.w,
+                              color: Colors.white,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+          childCount: 4,
+        ),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisExtent: 270,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+        ),
+      ),
+    );
+  }
+
+  SliverToBoxAdapter bestselling() {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+        child: Text(
+          'Bestselling',
+          style: TextStyle(
+            fontSize: 17.sp,
+            color: Colors.grey.shade700,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
