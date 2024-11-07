@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shopping_app_with_api/constants/color.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_shopping_app_with_api/data/bloc/home_bloc/home_bloc.dart';
+import 'package:flutter_shopping_app_with_api/data/bloc/home_bloc/home_state.dart';
+import 'package:flutter_shopping_app_with_api/data/model/banner.dart';
+import 'package:flutter_shopping_app_with_api/data/repository/banner_repository.dart';
+import 'package:flutter_shopping_app_with_api/gitit/gitit.dart';
+import 'package:flutter_shopping_app_with_api/util/cach_image.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,14 +25,32 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: backgroundColor,
       body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            Appbar(),
-            Search_widget(),
-            Banner(),
-            bestselling(),
-            bestselling_widget(),
-          ],
+        child: BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, state) {
+            if (state is HomeLoadingState) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is HomeRequestSuccessState) {
+              return CustomScrollView(
+                slivers: [
+                  Appbar(),
+                  Search_widget(),
+                  state.bannerList.fold(
+                    (left) {
+                      return SliverToBoxAdapter(
+                        child: Text(left),
+                      );
+                    },
+                    (right) {
+                      return Banner(right);
+                    },
+                  ),
+                  bestselling(),
+                  bestselling_widget(),
+                ],
+              );
+            }
+            return Center(child: Text('d'));
+          },
         ),
       ),
     );
@@ -137,45 +162,33 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  SliverToBoxAdapter Banner() {
+  SliverToBoxAdapter Banner(List<Banner_model> banner) {
     return SliverToBoxAdapter(
       child: Column(
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.h, vertical: 10.h),
-            child: Container(
-              height: 200.h,
-              width: double.infinity,
-              child: PageView(
-                controller: _control_page,
-                scrollDirection: Axis.horizontal,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      color: Colors.white,
-                    ),
-                    child: Center(
-                        child: Text('1', style: TextStyle(fontSize: 30))),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      color: Colors.white,
-                    ),
-                    child: Center(
-                        child: Text('2', style: TextStyle(fontSize: 30))),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      color: Colors.white,
-                    ),
-                    child: Center(
-                        child: Text('3', style: TextStyle(fontSize: 30))),
-                  ),
-                ],
-              ),
+          Container(
+            height: 200.h,
+            width: double.infinity,
+            child: PageView(
+              controller: _control_page,
+              scrollDirection: Axis.horizontal,
+              children: [
+                ...List.generate(banner.length, (index) {
+                  return Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 15.w, vertical: 10.h),
+                      child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.r),
+                            color: Colors.white,
+                          ),
+                          child: CacheImage(
+                            imageUrl: banner[index].thumbnail,
+                            banner: true,
+                            radius: 10,
+                          )));
+                })
+              ],
             ),
           ),
           SmoothPageIndicator(

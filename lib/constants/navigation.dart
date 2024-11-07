@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_shopping_app_with_api/data/bloc/home_bloc/home_bloc.dart';
+import 'package:flutter_shopping_app_with_api/data/bloc/home_bloc/home_event.dart';
 import 'package:flutter_shopping_app_with_api/screen/category_screen.dart';
 import 'package:flutter_shopping_app_with_api/screen/home_screen.dart';
 import 'package:flutter_shopping_app_with_api/screen/like_screen.dart';
@@ -15,7 +18,14 @@ class Navigation_Screen extends StatefulWidget {
 
 int index = 0;
 List screen = [
-  HomeScreen(),
+  BlocProvider(
+    create: (context) {
+      var bloc = HomeBloc();
+      bloc.add(HomeGetInitilzeData());
+      return bloc;
+    },
+    child: HomeScreen(),
+  ),
   category_Screen(),
   shopping_cart(),
   Like_Screen(),

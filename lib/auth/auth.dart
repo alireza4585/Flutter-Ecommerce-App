@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_shopping_app_with_api/data/bloc/auth_bloc.dart';
+import 'package:flutter_shopping_app_with_api/data/bloc/auth_bloc/auth_bloc.dart';
 import 'package:flutter_shopping_app_with_api/screen/login_screen.dart';
 import 'package:flutter_shopping_app_with_api/screen/signup_screen.dart';
 

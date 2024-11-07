@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_shopping_app_with_api/data/bloc/auth_event.dart';
-import 'package:flutter_shopping_app_with_api/data/bloc/auth_state.dart';
+import 'package:flutter_shopping_app_with_api/data/bloc/auth_bloc/auth_event.dart';
+import 'package:flutter_shopping_app_with_api/data/bloc/auth_bloc/auth_state.dart';
 import 'package:flutter_shopping_app_with_api/data/repository/auth_repository.dart';
 import 'package:flutter_shopping_app_with_api/gitit/gitit.dart';
 
